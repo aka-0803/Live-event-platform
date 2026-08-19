@@ -32,10 +32,10 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/live_event_platform?schema=public
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      JWT_ACCESS_SECRET: change_this_access_secret
-      JWT_ACCESS_EXPIRES_IN: 15m
-      JWT_REFRESH_SECRET: change_this_refresh_secret
-      JWT_REFRESH_EXPIRES_IN: 7d
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
+      JWT_ACCESS_EXPIRES_IN: ${JWT_ACCESS_EXPIRES_IN:-15m}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
     command: sh -c "npx prisma migrate deploy && node dist/main.js"
 
   worker:
